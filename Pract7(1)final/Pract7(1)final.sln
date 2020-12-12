@@ -48,6 +48,7 @@ double maxMin(double arr[4][4]) {
 
 int main()
 {
+setlocale(LC_ALL, "Russian");
 	std::cout << "Start of task 904" << std::endl;
 	std::cout << "Найти наибольший и наименьший элементы Двумерного массива вещественных чисел В[m, n]."<<std::endl;
 	const int A = 4;
