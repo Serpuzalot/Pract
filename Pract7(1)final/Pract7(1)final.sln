@@ -49,6 +49,7 @@ double maxMin(double arr[4][4]) {
 int main()
 {
 	std::cout << "Start of task 904" << std::endl;
+	std::cout << "Найти наибольший и наименьший элементы Двумерного массива вещественных чисел В[m, n]."<<std::endl;
 	const int A = 4;
 	const  int B = 4;
 	double array[A][B];
