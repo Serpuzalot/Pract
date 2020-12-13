@@ -2,15 +2,17 @@
 #include <iostream>
 #include <ctime>
 double masfilling(double arr[4][4]) {
+	
+		for (int i = 0; i < 4; i++) {
 
-	for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				arr[i][j] = rand() * 0.1;
 
-		for (int j = 0; j < 4; j++) {
-			arr[i][j] = rand() * 0.1;
+			}
 
 		}
 
-	}
+	
 	return arr[4][4];
 }
 void masout(double arr[4][4]) {
@@ -44,21 +46,171 @@ double maxMin(double arr[4][4]) {
 	std::cout << "Min number: " << min << std::endl;
 	return max, min;
 }
+double chekBox(int colNum){
+	
+		while (colNum > 4 || colNum < 1) {
+			std::cout << "Input error" << std::endl;
+			std::cout << "Введите номер столбца (от 0 до 4):" << std::endl;
+			std::cin >> colNum;
+		}
+		return colNum;
+	
+	
+}
+double diagNum(double arr[4][4],int n) {
+	
+	for (int i = 0; i < 4; i++) {
+		if (i + n == 4 - 1) {
+			std::cout << "В " << n+1 << " столбце на побочной диагонали находится: " << arr[i][n] << std::endl;
+			
+		}
+	}
+	
+	return 0;
+}
+int createMatrix(int arr[10][10],bool f) {
+	if (f) {
+		std::cout << "Matrix:" << std::endl;
+		for (int i = 0; i < 10; i++) {
+
+			for (int j = 0; j < 10; j++) {
+				arr[i][j] = rand() % 15;
+				std::cout << arr[i][j] << "	";
+			}
+			std::cout << std::endl;
+		}
+		return arr[10][10];
+	}
+	else {
+		std::cout << "Matrix:" << std::endl;
+		for (int i = 0; i < 10; i++) {
+
+			for (int j = 0; j < 10; j++) {
+				arr[i][j] = rand() % 20-10;
+				std::cout << arr[i][j] << "	";
+			}
+			std::cout << std::endl;
+		}
+		return arr[10][10];
+	}
+	
+}
+int answer(int arr[10][10]) {
+	std::cout << "Элементы которые лежат выше побочной диагонали:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+
+		for (int j = 0; j < 10; j++) {
+			if (i + j < 10 - 1) {
+				std::cout << arr[i][j]<<"	";
+			 }
+			else {
+				std::cout << "	";
+			}
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "Элементы которые лежат ниже побочной диагонали:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+
+		for (int j = 0; j < 10; j++) {
+			if (i + j > 10 - 1) {
+				std::cout << arr[i][j] << "	";
+			}
+			else {
+				std::cout << "	";
+			}
+		}
+		std::cout << std::endl;
+	}
+	
+	std::cout << "Элементы которые лежат ниже главной диагонали:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+
+		for (int j = 0; j < 10; j++) {
+			if (i > j) {
+				std::cout << arr[i][j] << "	";
+			}
+			else {
+				std::cout << "	";
+			}
+		}
+		std::cout << std::endl;
+	}
+	
+	std::cout << "Элементы которые лежат выше главной диагонали:" << std::endl;
+	for (int i = 0; i < 10; i++) {
+
+		for (int j = 0; j < 10; j++) {
+			if (i < j) {
+				std::cout << arr[i][j] << "	";
+			}else{
+				std::cout << "	";
+			}
+			
+		}
+		std::cout << std::endl;
+	}
+	return 0;
+
+}
+int searchMin(int arr[10][10]) {
+	int temp=1;
+	int min=1000;
+	int minS;
+	for (int i = 0; i < 10; i++) {
+		
+		for (int k = 0; k < 10; k++) {
+			temp *= arr[k][i];
+		}
+		if (temp < min) {
+			min = temp;
+			minS = i;
+			temp = 1;
+		}
+		temp = 1;
+
+	}
+	std::cout << "Столбец с минимальным произведением элемментов : " << minS<<std::endl;
+	return 0;
+}
+
 
 
 int main()
 {
-setlocale(LC_ALL, "Russian");
-	std::cout << "Start of task 904" << std::endl;
-	std::cout << "Найти наибольший и наименьший элементы Двумерного массива вещественных чисел В[m, n]."<<std::endl;
+	setlocale(LC_ALL, "Russian");
 	const int A = 4;
 	const  int B = 4;
 	double array[A][B];
 	//double *arr[][] = &array ;
 	srand((int)time(0));
+	std::cout << "Start of task 904" << std::endl;
+	std::cout << "Найти наибольший и наименьший элементы Двумерного массива вещественных чисел В[m, n]." << std::endl;
 	array[A][B] = masfilling(array);
 	masout(array);
 	maxMin(array);
-	std::cout<< "End of task 904"<<std::endl;
+	std::cout << "End of task 904" << std::endl;
+	std::cout << "Start of task 939" << std::endl;
+	std::cout << "Известен номер столбца, на котором расположен элемент побочной диагонали массива. Вывести на экран значение этого элемента." << std::endl;
+	int colNum=0;
+	std::cout << "Введите номер столбца (от 1 до 4):" << std::endl;
+	std::cin >> colNum;
+	colNum = chekBox(colNum);
+	diagNum(array, colNum-1);
+	std::cout << "End of task 939" << std::endl;
+	std::cout << "Start of task 984" << std::endl;
+	std::cout << "Дан Двумерный массив размером 10 × 10. Вывести на экран часть массива:\nа) расположенную выше главной диагонали;\nб) расположенную ниже главной диагонали;\nв) расположенную выше побочной диагонали;\nг) расположенную ниже побочной диагонали." << std::endl;
+	int const K = 10;
+	int const J = 10;
+	int arrKJ[K][J];
+	arrKJ[K][J] = createMatrix(arrKJ,true);
+	answer(arrKJ);
+	std::cout << "End of task 984" << std::endl;
+	std::cout << "Start of task 1009" << std::endl;
+	std::cout << "Среди столбцов заданной целочисленной матрицы, содержащих только такие элементы, которые по модулю не больше 10, \nнайти столбец с минимальным произведением элементов" << std::endl;
+	bool forTask;
+	arrKJ[K][J] = createMatrix(arrKJ, false);
+	searchMin(arrKJ);
+	std::cout << "End of task 1009" << std::endl;
 }
 
