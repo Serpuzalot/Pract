@@ -173,6 +173,102 @@ int searchMin(int arr[10][10]) {
 	std::cout << "Столбец с минимальным произведением элемментов : " << minS<<std::endl;
 	return 0;
 }
+int oneArr(int arr[10][10],int arrOne[50],int n) {
+	int s = 0;
+	if (n == 1) {
+		
+		std::cout << "Элементы которые лежат выше побочной диагонали:" << std::endl;
+		for (int i = 0; i < 10; i++) {
+			
+			for (int j = 0; j < 10; j++) {
+				if (i + j < 10 - 1) {
+
+					arrOne[s] = arr[i][j];
+					std::cout << arrOne[s]<<" " ;
+					s++;
+				}
+				else {
+					
+				}
+			}
+			s++;
+		}
+		std::cout << std::endl;
+		return arrOne[45];
+		
+	}
+	else {
+		if (n == 2) {
+			std::cout << "Элементы которые лежат ниже побочной диагонали:" << std::endl;
+			for (int i = 0; i < 10; i++) {
+				
+				for (int j = 0; j < 10; j++) {
+					if (i + j > 10 - 1) {
+
+						arrOne[s] = arr[i][j];
+						std::cout << arrOne[s] << " ";
+						s++;
+					}
+					else {
+						
+					}
+				}
+				s++;
+			}
+			std::cout << std::endl;
+			return arrOne[45];
+			
+		}
+		else {
+			if (n == 3) {
+				std::cout << "Элементы которые лежат ниже главной диагонали:" << std::endl;
+				for (int i = 0; i < 10; i++) {
+					
+					for (int j = 0; j < 10; j++) {
+						if (i > j) {
+							arrOne[s] = arr[i][j];
+							std::cout << arrOne[s] << " ";
+							s++;
+						}
+						else {
+							
+						}
+					}
+					s++;
+					
+				}
+				std::cout << std::endl;
+				return arrOne[45];
+
+			}
+			else {
+
+			}if (n == 4) {
+				std::cout << "Элементы которые лежат выше главной диагонали:" << std::endl;
+				for (int i = 0; i < 10; i++) {
+					
+					for (int j = 0; j < 10; j++) {
+						if (i < j) {
+							arrOne[s] = arr[i][j];
+							std::cout << arrOne[s] << " ";
+							s++;
+						}
+						else {
+						
+						}
+					}
+					s++;
+
+				}
+				std::cout << std::endl;
+				return arrOne[45];
+			}
+			else {
+
+			}
+		}
+	}
+}
 
 
 
@@ -212,5 +308,17 @@ int main()
 	arrKJ[K][J] = createMatrix(arrKJ, false);
 	searchMin(arrKJ);
 	std::cout << "End of task 1009" << std::endl;
+	std::cout << "Start of task 1044" << std::endl;
+	std::cout << "Дан Двумерный массив размером n × n. Сформировать одномерный массив из элементов заданного массива:\nа) расположенных над главной диагональю;\nб) расположенных под главной диагональю;\nв) расположенных над побочной диагональю;\nг) расположенных под побочной диагональю." << std::endl;
+	int matrixB[10][10];
+	int arrA[45];
+	int arrB[45];
+	int arrC[45];
+	int arrG[45];
+	matrixB[10][10] = createMatrix(matrixB, false);
+	arrA[45] = oneArr(matrixB, arrA, 4);
+	arrB[45] = oneArr(matrixB, arrB, 3);
+	arrC[45] = oneArr(matrixB, arrC, 1);
+	arrG[45] = oneArr(matrixB, arrG, 2);
 }
 
