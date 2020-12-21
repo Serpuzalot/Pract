@@ -1,0 +1,135 @@
+
+#include <time.h>
+#include <iostream>
+
+
+void task3(){
+    std::cout << "Определить колличество простых чисел между 1 и 500" << std::endl;
+    int counter=0;
+    for (int i = 2; i < 500; i++) {
+        bool prime = true;
+        for (int j = 2; j < i; j++) {
+            if (i % j == 0) {
+                prime = false;
+                break;
+
+            }
+
+        }
+        if (prime) {
+            counter++;
+           // std::cout <<counter<<": "<< i << " Простое число" << std::endl;
+           
+        }
+    }
+    std::cout << "Колличесвто простых чисел между 1 и 500: " << counter << std::endl;;
+}
+void task4() {
+    std::cout << " Используя собсвтенную функцию найти для каждого массива кол-во эллементов,\nкоторым соответсувует условие (2<элемент массива <10)" << std::endl;
+    const int A = 19;
+    double arr[A];
+    double array[] = { 1,-1,2,-2,3,-3,4,-4,5,-5,10,-10,20,-20,11,-11 };
+    int counterF=0;
+    int counterS=0;
+    for (int i = 0; i < A; i++) {
+        std::cout << "Input " << i << " element of array:" << std::endl;
+        std::cin >> arr[i];
+    }
+    std::cout << "First array : ";
+    for (int i = 0; i < A; i++) {
+        std::cout << arr[i] << "   ";
+    }
+    std::cout << "\nSecond array: ";
+    for (int i = 0; i < 16; i++) {
+        std::cout << array[i] << "   ";
+    }
+    for (int i = 0; i < A; i++) {
+        if (arr[i] > 2 && arr[i] < 10) {
+            counterF++;
+        }
+        if (i < 16 && array[i]>2 && array[i] < 10) {
+            counterS++;
+        }
+    }
+    std::cout <<"\n"<<counterF << ": колличество элементов которые удовлетворяют условие в первом массиве " << std::endl;
+    std::cout <<counterS<<": колличество элементов которые удовлетворяют условие во втором  массиве" << std::endl;
+}
+void task5() {
+    std::cout << "Найти строку с минимальным элементом .Заменить все элементы этой строки на произведение соответствующих \nэлементов главной и побочной диагоналей " << std::endl;
+    const int A = 4;
+    const int B = 4;
+    int matr[A][B];
+    int min;
+    int minI=0;
+    int arr1[A];
+    int arr2[B];
+    std::cout << "Матрица :" << std::endl;
+    for (int i = 0; i < A; i++) {
+
+        for (int j = 0; j < B; j++) {
+            matr[i][j] = rand() % 21-10;
+            std::cout << matr[i][j] << "   ";
+        }
+        std::cout << std::endl;
+    }
+    min = matr[0][0];
+    for (int i = 0; i < A; i++) {
+
+        for (int j = 0; j < B; j++) {
+            if (matr[i][j] < min) {
+                min = matr[i][j];
+                minI = i;
+           }
+        }
+       
+    }
+    std::cout <<"Минимум:"<< min << "  " <<"Строка на которой расположен минимальный эллемент:"<< minI<<std::endl;
+    int k=0,s=0;
+    for (int i = 0; i < A; i++) {
+
+        for (int j = 0; j < B; j++) {
+            if (i == j) {
+                arr1[k] = matr[i][j];
+                k++;
+            }
+            if ( i + j == 3 ) {
+                arr2[s] = matr[i][j];
+                s++;
+            }
+            // glav i=j
+            // poboch i+j=5;
+        }
+
+    }
+    std::cout << "Главная диагонль:" << std::endl;
+    for (int i = 0; i < A; i++) {
+        std::cout << arr1[i] <<"    ";
+    }
+    std::cout << "\nПобочная диагональ:" << std::endl;
+    for (int i = 0; i < B; i++) {
+        std::cout << arr2[i] <<"    ";
+    }
+    std::cout  << std::endl;
+    for (int i = 0; i < B; i++) {
+        matr[minI][i] = arr1[i] * arr2[i];
+    }
+    std::cout << "Нужная матрица :" << std::endl;
+    for (int i = 0; i < A; i++) {
+
+        for (int j = 0; j < B; j++) {
+            
+            std::cout << matr[i][j] << "   ";
+        }
+        std::cout << std::endl;
+    }
+
+    
+}
+int main()
+{
+    srand(time(NULL));
+    setlocale(LC_ALL, "Russian");
+    //task3();
+    //task4();
+    //task5();
+}
